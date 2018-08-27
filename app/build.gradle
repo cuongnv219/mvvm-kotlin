@@ -44,7 +44,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.1.15"
     implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
 
-
     // RecyclerView
     implementation "com.android.support:recyclerview-v7:27.1.1"
 
@@ -55,4 +54,8 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:2.15"
 
     kapt "com.android.databinding:compiler:3.1.4"
+    //event bus
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    implementation 'com.google.code.gson:gson:2.8.5'
+
 }

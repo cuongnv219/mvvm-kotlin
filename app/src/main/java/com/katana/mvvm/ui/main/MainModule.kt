@@ -1,4 +1,4 @@
-package com.katana.mvvm.main
+package com.katana.mvvm.ui.main
 
 import com.utils.SchedulerProvider
 import dagger.Module

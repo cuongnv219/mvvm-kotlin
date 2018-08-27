@@ -1,7 +1,7 @@
 package com.katana.mvvm.di.builder
 
-import com.katana.mvvm.main.MainActivity
-import com.katana.mvvm.main.MainModule
+import com.katana.mvvm.ui.main.MainActivity
+import com.katana.mvvm.ui.main.MainModule
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
