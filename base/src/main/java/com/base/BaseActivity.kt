@@ -80,4 +80,37 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
             e.printStackTrace()
         }
     }
+
+    @Throws
+    protected fun openFragment(resId: Int, fragmentClazz: Class<Fragment>, args: Bundle?, addBackStack: Boolean,
+                               vararg aniInt: Int) {
+        val tag = fragmentClazz.simpleName
+        try {
+            val isExisted = supportFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
+            if (!isExisted) {
+                val fragment: Fragment
+                try {
+                    fragment = fragmentClazz.newInstance().apply { arguments = args }
+
+                    val transaction = supportFragmentManager.beginTransaction()
+                    transaction.setCustomAnimations(aniInt[0], aniInt[1], aniInt[2], aniInt[3])
+
+                    transaction.add(resId, fragment, tag)
+
+                    if (addBackStack) {
+                        transaction.addToBackStack(tag)
+                    }
+                    transaction.commitAllowingStateLoss()
+
+                } catch (e: InstantiationException) {
+                    e.printStackTrace()
+                } catch (e: IllegalAccessException) {
+                    e.printStackTrace()
+                }
+
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

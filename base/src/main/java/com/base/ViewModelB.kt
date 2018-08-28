@@ -11,17 +11,13 @@ import java.lang.ref.WeakReference
 abstract class ViewModelB<N>(private var schedulerProvider: SchedulerProvider) : ViewModel() {
 
     private lateinit var navigator: WeakReference<N>
-    private var compositeDisposable: CompositeDisposable = CompositeDisposable()
+    var compositeDisposable: CompositeDisposable = CompositeDisposable()
 
     fun setNavigator(navigator: N) {
         this.navigator = WeakReference(navigator)
     }
 
-    fun getNavigator() = navigator.get()!!
-
-    fun getCompositeDisposable() = compositeDisposable
-
-    fun getSchedulerProvider() = schedulerProvider
+    fun getNavigator(): N = navigator.get()!!
 
     override fun onCleared() {
         compositeDisposable.dispose()
