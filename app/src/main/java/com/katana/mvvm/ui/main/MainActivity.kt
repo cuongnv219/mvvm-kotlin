@@ -43,13 +43,20 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
     override fun updateUI(savedInstanceState: Bundle?) {
         mainViewModel.setNavigator(this)
 
-        var gson = Gson()
-        var arr = arrayListOf("1", "2")
-        var s = gson.toJson(arr)
+        val gson = Gson()
+        val arr = arrayListOf("1", "2")
+        val s = gson.toJson(arr)
 
         var jj = gson.fromJson<List<String>>(s, ListOfSomething<String>(String::class.java))
+
+        var params = mapOf<String, String>()
+//        params.plus("key", "map")
+//        params.map { "key" to ApiEndPoint.API_KEY }
+//        params.map { "part" to "snippet" }
+//        params.map { "hl" to "en_us" }
         setUpRcv()
         initStudent()
+        mainViewModel.getAllCountry()
     }
 
     private fun setUpRcv() {
