@@ -2,7 +2,9 @@ package com.katana
 
 import android.app.Activity
 import android.app.Application
+import com.katana.mvvm.BuildConfig
 import com.katana.mvvm.di.component.DaggerAppComponent
+import com.utils.Logger
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -24,6 +26,7 @@ class MvvmApp : Application(), HasActivityInjector {
     override fun onCreate() {
         super.onCreate()
 
+        Logger.init(BuildConfig.DEBUG)
         DaggerAppComponent.builder().application(this)
                 .build().inject(this)
     }
