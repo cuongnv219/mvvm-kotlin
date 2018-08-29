@@ -74,4 +74,68 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModelB<*>> : Fragment()
     private fun performDI() {
         AndroidSupportInjection.inject(this)
     }
+
+    @Throws
+    open fun openFragment(resId: Int, fragmentClazz: Class<*>, args: Bundle?, addBackStack: Boolean) {
+        val tag = fragmentClazz.simpleName
+        try {
+            val isExisted = childFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
+            if (!isExisted) {
+                val fragment: Fragment
+                try {
+                    fragment = (fragmentClazz as Class<Fragment>).newInstance().apply { arguments = args }
+
+                    val transaction = childFragmentManager.beginTransaction()
+                    //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
+                    transaction.add(resId, fragment, tag)
+
+                    if (addBackStack) {
+                        transaction.addToBackStack(tag)
+                    }
+                    transaction.commitAllowingStateLoss()
+
+                } catch (e: java.lang.InstantiationException) {
+                    e.printStackTrace()
+                } catch (e: IllegalAccessException) {
+                    e.printStackTrace()
+                }
+
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
+
+    @Throws
+    open fun openFragment(resId: Int, fragmentClazz: Class<*>, args: Bundle?, addBackStack: Boolean,
+                          vararg aniInt: Int) {
+        val tag = fragmentClazz.simpleName
+        try {
+            val isExisted = childFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
+            if (!isExisted) {
+                val fragment: Fragment
+                try {
+                    fragment = (fragmentClazz as Class<Fragment>).newInstance().apply { arguments = args }
+
+                    val transaction = childFragmentManager.beginTransaction()
+                    transaction.setCustomAnimations(aniInt[0], aniInt[1], aniInt[2], aniInt[3])
+
+                    transaction.add(resId, fragment, tag)
+
+                    if (addBackStack) {
+                        transaction.addToBackStack(tag)
+                    }
+                    transaction.commitAllowingStateLoss()
+
+                } catch (e: java.lang.InstantiationException) {
+                    e.printStackTrace()
+                } catch (e: IllegalAccessException) {
+                    e.printStackTrace()
+                }
+
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+        }
+    }
 }

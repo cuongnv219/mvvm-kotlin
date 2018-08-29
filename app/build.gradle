@@ -33,10 +33,9 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     implementation "com.android.support:appcompat-v7:27.1.1"
+    implementation 'com.android.support:support-v4:27.1.1'
     implementation "com.android.support:design:27.1.1"
     implementation "com.android.support:recyclerview-v7:27.1.1"
-
-//    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
 
     implementation "android.arch.lifecycle:extensions:1.1.1"
 

@@ -51,14 +51,14 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
     }
 
     @Throws
-    protected fun openFragment(resId: Int, fragmentClazz: Class<Fragment>, args: Bundle?, addBackStack: Boolean) {
+    open fun openFragment(resId: Int, fragmentClazz: Class<*>, args: Bundle?, addBackStack: Boolean) {
         val tag = fragmentClazz.simpleName
         try {
             val isExisted = supportFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
             if (!isExisted) {
                 val fragment: Fragment
                 try {
-                    fragment = fragmentClazz.newInstance().apply { arguments = args }
+                    fragment = (fragmentClazz as Class<Fragment>).newInstance().apply { arguments = args }
 
                     val transaction = supportFragmentManager.beginTransaction()
                     //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -82,15 +82,15 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
     }
 
     @Throws
-    protected fun openFragment(resId: Int, fragmentClazz: Class<Fragment>, args: Bundle?, addBackStack: Boolean,
-                               vararg aniInt: Int) {
+    open fun openFragment(resId: Int, fragmentClazz: Class<*>, args: Bundle?, addBackStack: Boolean,
+                          vararg aniInt: Int) {
         val tag = fragmentClazz.simpleName
         try {
             val isExisted = supportFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
             if (!isExisted) {
                 val fragment: Fragment
                 try {
-                    fragment = fragmentClazz.newInstance().apply { arguments = args }
+                    fragment = (fragmentClazz as Class<Fragment>).newInstance().apply { arguments = args }
 
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.setCustomAnimations(aniInt[0], aniInt[1], aniInt[2], aniInt[3])
