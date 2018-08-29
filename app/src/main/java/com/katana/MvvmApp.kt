@@ -2,12 +2,15 @@ package com.katana
 
 import android.app.Activity
 import android.app.Application
+import com.androidnetworking.AndroidNetworking
 import com.katana.mvvm.BuildConfig
 import com.katana.mvvm.di.component.DaggerAppComponent
 import com.utils.Logger
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import okhttp3.OkHttpClient
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 /**
@@ -29,5 +32,13 @@ class MvvmApp : Application(), HasActivityInjector {
         Logger.init(BuildConfig.DEBUG)
         DaggerAppComponent.builder().application(this)
                 .build().inject(this)
+
+        val okHttpClient = OkHttpClient().newBuilder()
+                .connectTimeout(60, TimeUnit.SECONDS)
+                .readTimeout(60, TimeUnit.SECONDS)
+                .writeTimeout(60, TimeUnit.SECONDS)
+                .build()
+
+        AndroidNetworking.initialize(this, okHttpClient)
     }
 }

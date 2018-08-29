@@ -1,6 +1,5 @@
 package com.katana.mvvm.di.component
 
-import android.app.Application
 import com.katana.MvvmApp
 import com.katana.mvvm.di.builder.ActivityBuilder
 import com.katana.mvvm.di.module.AppModule
@@ -20,7 +19,7 @@ interface AppComponent {
     interface Builder {
 
         @BindsInstance
-        fun application(application: Application): Builder
+        fun application(application: MvvmApp): Builder
 
         fun build(): AppComponent
     }
