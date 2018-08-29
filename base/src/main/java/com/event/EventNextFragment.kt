@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment
  */
 class EventNextFragment {
 
-    var clazz: Class<Fragment>? = null
+    var clazz: Class<*>
     var bundle: Bundle? = null
     var isAddToBackStack: Boolean = false
 
@@ -18,8 +18,12 @@ class EventNextFragment {
         this.isAddToBackStack = addToBackStack
     }
 
-    constructor(clazz: Class<Fragment>, addToBackStack: Boolean) {
+    constructor(clazz: Class<*>, addToBackStack: Boolean) {
         this.clazz = clazz
         this.isAddToBackStack = addToBackStack
+    }
+
+    constructor(clazz: Class<*>) {
+        this.clazz = clazz
     }
 }

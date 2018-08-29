@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import com.base.BaseActivity
+import com.event.EventNextFragment
 import com.google.gson.Gson
 import com.katana.mvvm.BR
 import com.katana.mvvm.R
@@ -57,6 +58,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         setUpRcv()
         initStudent()
         mainViewModel.getAllCountry()
+
+        val eventNextFragment = EventNextFragment(HomeFragment::class.java, false)
+
+        openFragment(R.id.content_main, eventNextFragment.clazz, null, false)
     }
 
     private fun setUpRcv() {
