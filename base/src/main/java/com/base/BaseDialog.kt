@@ -1,6 +1,9 @@
 package com.base
 
 import android.app.Dialog
+import android.arch.lifecycle.ViewModel
+import android.databinding.DataBindingUtil
+import android.databinding.ViewDataBinding
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -13,11 +16,18 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.RelativeLayout
+import dagger.android.support.AndroidSupportInjection
 
 /**
  * Created by Kaz on 11:32 7/20/18
  */
-abstract class BaseDialog : DialogFragment() {
+abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : DialogFragment() {
+
+    lateinit var viewDataBinding: T
+
+    abstract fun getBindingVariable(): Int
+
+    protected abstract fun getViewModel(): V
 
     @LayoutRes
     abstract fun getLayoutId(): Int
@@ -40,7 +50,12 @@ abstract class BaseDialog : DialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return activity?.layoutInflater?.inflate(getLayoutId(), null)
+        viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        performDependencyInjection()
+
+        viewDataBinding.setVariable(getBindingVariable(), getViewModel())
+        viewDataBinding.executePendingBindings()
+        return viewDataBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -77,5 +92,9 @@ abstract class BaseDialog : DialogFragment() {
                     .remove(it)
                     .commitAllowingStateLoss()
         }
+    }
+
+    private fun performDependencyInjection() {
+        AndroidSupportInjection.inject(this)
     }
 }
