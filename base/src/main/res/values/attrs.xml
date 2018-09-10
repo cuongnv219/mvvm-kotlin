@@ -4,6 +4,6 @@
     <attr name="maxHeight" format="dimension"/>
   </declare-styleable>
   <declare-styleable name="RoundRectCornerImageView">
-    <attr name="radius" format="float"/>
+    <attr name="radiusRound" format="float"/>
   </declare-styleable>
 </resources>

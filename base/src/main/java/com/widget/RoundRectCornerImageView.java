@@ -35,7 +35,7 @@ public class RoundRectCornerImageView extends android.support.v7.widget.AppCompa
         rect = new RectF();
         if (attrs != null) {
             TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RoundRectCornerImageView);
-            radius = typedArray.getFloat(R.styleable.RoundRectCornerImageView_radius, 5.0f);
+            radius = typedArray.getFloat(R.styleable.RoundRectCornerImageView_radiusRound, 5.0f);
             typedArray.recycle();
         }
     }
