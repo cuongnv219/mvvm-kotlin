@@ -3,4 +3,7 @@
   <declare-styleable name="MaxHeightScrollView">
     <attr name="maxHeight" format="dimension"/>
   </declare-styleable>
+  <declare-styleable name="RoundRectCornerImageView">
+    <attr name="radius" format="float"/>
+  </declare-styleable>
 </resources>

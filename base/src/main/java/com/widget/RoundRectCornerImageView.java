@@ -1,10 +1,13 @@
 package com.widget;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Path;
 import android.graphics.RectF;
 import android.util.AttributeSet;
+
+import com.base.R;
 
 public class RoundRectCornerImageView extends android.support.v7.widget.AppCompatImageView {
 
@@ -14,22 +17,27 @@ public class RoundRectCornerImageView extends android.support.v7.widget.AppCompa
 
     public RoundRectCornerImageView(Context context) {
         super(context);
-        init();
+        init(context, null);
     }
 
     public RoundRectCornerImageView(Context context, AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(context, attrs);
     }
 
     public RoundRectCornerImageView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
-        init();
+        init(context, attrs);
     }
 
-    private void init() {
+    private void init(Context context, AttributeSet attrs) {
         path = new Path();
         rect = new RectF();
+        if (attrs != null) {
+            TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.RoundRectCornerImageView);
+            radius = typedArray.getFloat(R.styleable.RoundRectCornerImageView_radius, 5.0f);
+            typedArray.recycle();
+        }
     }
 
     @Override
