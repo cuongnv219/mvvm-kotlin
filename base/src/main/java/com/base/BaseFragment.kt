@@ -14,7 +14,7 @@ import dagger.android.support.AndroidSupportInjection
 abstract class BaseFragment<T : ViewDataBinding, V : ViewModelB<*>> : Fragment(), ViewTreeObserver.OnGlobalLayoutListener {
 
     var rootView: View? = null
-    var viewDataBinding: T? = null
+    var binding: T? = null
 
     protected abstract fun getViewModel(): V
 
@@ -52,16 +52,16 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModelB<*>> : Fragment()
             parent.removeView(rootView)
         } else {
             try {
-                viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-                rootView = if (viewDataBinding != null) {
-                    viewDataBinding!!.root
+                binding = DataBindingUtil.inflate(inflater, layoutId, container, false)
+                rootView = if (binding != null) {
+                    binding!!.root
                 } else {
                     inflater.inflate(layoutId, container, false)
                 }
                 rootView!!.viewTreeObserver.addOnGlobalLayoutListener(this)
 
-                viewDataBinding!!.setVariable(getBindingVariable(), getViewModel())
-                viewDataBinding!!.executePendingBindings()
+                binding!!.setVariable(getBindingVariable(), getViewModel())
+                binding!!.executePendingBindings()
 
                 updateUI(savedInstanceState)
             } catch (e: InflateException) {

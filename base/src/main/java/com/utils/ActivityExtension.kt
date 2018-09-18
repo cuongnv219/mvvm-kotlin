@@ -31,7 +31,6 @@ fun Activity.startActivityForResult(clazz: Class<*>, requestCode: Int, bundle: B
 
 fun Activity.startActivityNewTask(clazz: Class<*>) {
     val intent = Intent(this, clazz)
-    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
     startActivity(intent)
 }

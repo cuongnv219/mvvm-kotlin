@@ -12,7 +12,7 @@ import android.widget.TextView
 /**
  * Created by Kaz on 14:58 8/27/18
  */
-object Utils {
+object KeyboardUtils {
 
     fun hideKeyboard(activity: Activity) {
         val imm = activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -23,7 +23,7 @@ import dagger.android.support.AndroidSupportInjection
  */
 abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : DialogFragment() {
 
-    lateinit var viewDataBinding: T
+    lateinit var binding: T
 
     abstract fun getBindingVariable(): Int
 
@@ -50,12 +50,12 @@ abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : DialogFragment()
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        viewDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        binding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         performDependencyInjection()
 
-        viewDataBinding.setVariable(getBindingVariable(), getViewModel())
-        viewDataBinding.executePendingBindings()
-        return viewDataBinding.root
+        binding.setVariable(getBindingVariable(), getViewModel())
+        binding.executePendingBindings()
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

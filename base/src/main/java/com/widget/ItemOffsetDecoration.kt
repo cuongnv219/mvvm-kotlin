@@ -6,7 +6,6 @@ import android.support.annotation.DimenRes
 import android.support.v7.widget.RecyclerView
 import android.view.View
 
-
 class ItemOffsetDecoration(private val mItemOffset: Int) : RecyclerView.ItemDecoration() {
 
     constructor(context: Context, @DimenRes itemOffsetId: Int) : this(context.resources.getDimensionPixelSize(itemOffsetId))

@@ -13,7 +13,7 @@ import dagger.android.AndroidInjection
  */
 abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatActivity() {
 
-    lateinit var viewDataBinding: T
+    lateinit var binding: T
 
     @LayoutRes
     protected abstract fun getLayoutId(): Int
@@ -36,9 +36,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
     }
 
     private fun performDataBinding() {
-        viewDataBinding = DataBindingUtil.setContentView(this, getLayoutId())
-        viewDataBinding.executePendingBindings()
-        viewDataBinding.setVariable(getBindingVariable(), getViewModel())
+        binding = DataBindingUtil.setContentView(this, getLayoutId())
+        binding.executePendingBindings()
+        binding.setVariable(getBindingVariable(), getViewModel())
     }
 
     override fun onBackPressed() {

@@ -16,6 +16,8 @@ abstract class BaseCustomLayout : RelativeLayout {
     @LayoutRes
     abstract fun getLayoutId(): Int
 
+    protected abstract fun updateUI()
+
     open fun getStyleableId(): IntArray? {
         return null
     }
@@ -25,11 +27,13 @@ abstract class BaseCustomLayout : RelativeLayout {
     }
 
     constructor(context: Context, attr: AttributeSet) : super(context, attr) {
+        initAttr(attr)
         setInitLayout()
     }
 
     private fun setInitLayout() {
         LayoutInflater.from(context).inflate(getLayoutId(), this, true)
+        updateUI()
     }
 
     private fun initAttr(attr: AttributeSet) {

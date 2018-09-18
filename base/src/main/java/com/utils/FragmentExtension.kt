@@ -31,7 +31,6 @@ fun Fragment.startActivityForResult(clazz: Class<*>, requestCode: Int, bundle: B
 
 fun Fragment.startActivityNewTask(clazz: Class<*>) {
     val intent = Intent(context, clazz)
-    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK
-    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
-    startActivity(intent)
+    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
+    activity?.startActivity(intent)
 }
