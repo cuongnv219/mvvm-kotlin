@@ -13,4 +13,7 @@ fun ViewGroup.inflateExt(layoutId: Int) = LayoutInflater.from(context).inflate(l
 
 fun Activity.toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
 
-fun Fragment.toast(msg: String) = Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+fun Fragment.toast(msg: String) {
+    if (context != null)
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+}
