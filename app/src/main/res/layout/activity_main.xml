@@ -10,10 +10,16 @@
   </data>
 
   <LinearLayout
-      android:layout_width="match_parent"
       android:id="@+id/content_main"
+      android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:orientation="vertical"
       tools:context=".ui.main.MainActivity">
+
+    <Button
+        android:id="@+id/btn_fuck"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv"

@@ -1,12 +1,15 @@
 package com.base
 
+import android.content.Context
 import android.databinding.DataBindingUtil
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.support.v7.app.AppCompatActivity
+import com.widget.Boast
 import dagger.android.AndroidInjection
+import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 
 /**
  * Created by Kaz on 09:27 8/20/18
@@ -39,6 +42,10 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         binding = DataBindingUtil.setContentView(this, getLayoutId())
         binding.executePendingBindings()
         binding.setVariable(getBindingVariable(), getViewModel())
+    }
+
+    override fun attachBaseContext(newBase: Context) {
+        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase))
     }
 
     override fun onBackPressed() {
@@ -113,4 +120,6 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
             e.printStackTrace()
         }
     }
+
+    fun toast(msg: String) = Boast.makeText(this, msg).show()
 }

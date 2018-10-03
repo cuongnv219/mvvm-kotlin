@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
 import android.view.*
+import com.widget.Boast
 import dagger.android.support.AndroidSupportInjection
 
 /**
@@ -136,6 +137,12 @@ abstract class BaseFragment<T : ViewDataBinding, V : ViewModelB<*>> : Fragment()
             }
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    fun toast(msg: String) {
+        context?.let {
+            Boast.makeText(it, msg).show()
         }
     }
 }

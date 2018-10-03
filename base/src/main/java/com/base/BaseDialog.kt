@@ -16,6 +16,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.RelativeLayout
+import com.widget.Boast
 import dagger.android.support.AndroidSupportInjection
 
 /**
@@ -96,5 +97,11 @@ abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : DialogFragment()
 
     private fun performDependencyInjection() {
         AndroidSupportInjection.inject(this)
+    }
+
+    fun toast(msg: String) {
+        context?.let {
+            Boast.makeText(it, msg).show()
+        }
     }
 }

@@ -10,6 +10,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import okhttp3.OkHttpClient
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
@@ -20,6 +21,8 @@ class MvvmApp : Application(), HasActivityInjector {
 
     @Inject
     lateinit var dispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
+    @Inject
+    lateinit var calligraphyConfig: CalligraphyConfig
 
     /** Returns an [AndroidInjector] of [Activity]s.  */
     override fun activityInjector(): AndroidInjector<Activity> {
@@ -40,5 +43,7 @@ class MvvmApp : Application(), HasActivityInjector {
                 .build()
 
         AndroidNetworking.initialize(this, okHttpClient)
+
+        CalligraphyConfig.initDefault(calligraphyConfig)
     }
 }

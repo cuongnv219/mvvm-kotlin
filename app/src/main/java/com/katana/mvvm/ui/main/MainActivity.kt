@@ -13,8 +13,8 @@ import com.katana.mvvm.model.Student
 import com.katana.mvvm.ui.main.adapter.StudentAdapter
 import com.utils.ListOfSomething
 import com.utils.Logger
-import com.utils.toast
 import com.widget.AppScrollListener
+import com.widget.Boast
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
@@ -78,9 +78,11 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         rcv.addOnScrollListener(object : AppScrollListener() {
 
             override fun onLoadMore() {
-                toast("Load more")
             }
         })
+        binding.btnFuck.setOnClickListener {
+            Boast.makeText(this@MainActivity, "fuck").show()
+        }
     }
 
     private fun initStudent() {

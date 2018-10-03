@@ -10,6 +10,8 @@ import com.katana.mvvm.data.remote.AppApiHelper
 import com.utils.SchedulerProvider
 import dagger.Module
 import dagger.Provides
+import uk.co.chrisjenx.calligraphy.CalligraphyConfig
+import uk.co.chrisjenx.calligraphy.R
 import javax.inject.Singleton
 
 /**
@@ -37,4 +39,12 @@ class AppModule {
     @Provides
     @Singleton
     fun provideDataManager(dataManager: AppDataManager): DataManager = dataManager
+
+    @Provides
+    @Singleton
+    fun provideCalligraphyDefaultConfig(): CalligraphyConfig =
+            CalligraphyConfig.Builder()
+                    .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
+                    .setFontAttrId(R.attr.fontPath)
+                    .build()
 }
