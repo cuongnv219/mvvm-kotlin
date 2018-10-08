@@ -93,4 +93,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
         studentAdapter.setStudentList(studentList)
     }
+
+    override fun getLayoutIdLoading(): Int {
+        return R.layout.item_student
+    }
 }

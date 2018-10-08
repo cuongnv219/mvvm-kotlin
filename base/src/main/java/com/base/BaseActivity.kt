@@ -6,10 +6,12 @@ import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.annotation.LayoutRes
 import android.support.v4.app.Fragment
+import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import com.widget.Boast
 import dagger.android.AndroidInjection
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
+
 
 /**
  * Created by Kaz on 09:27 8/20/18
@@ -17,9 +19,16 @@ import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
 abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatActivity() {
 
     lateinit var binding: T
+    lateinit var loading: AlertDialog
+    private var isCancelable = false
 
     @LayoutRes
     protected abstract fun getLayoutId(): Int
+
+    @LayoutRes
+    open fun getLayoutIdLoading(): Int = -1
+
+    open fun getThemResId(): Int = -1
 
     protected abstract fun getBindingVariable(): Int
 
@@ -32,6 +41,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         super.onCreate(savedInstanceState)
         performDataBinding()
         updateUI(savedInstanceState)
+        initDialog()
     }
 
     private fun performDI() {
@@ -121,5 +131,43 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         }
     }
 
+    /**
+     * Show toast
+     * @param msg
+     */
     fun toast(msg: String) = Boast.makeText(this, msg).show()
+
+    /**
+     * Init dialog loading
+     */
+    private fun initDialog() {
+        val builder: AlertDialog.Builder = if (getThemResId() != -1)
+            AlertDialog.Builder(this, getThemResId()) else AlertDialog.Builder(this)
+
+        builder.setCancelable(isCancelable)
+        builder.setView(if (getLayoutIdLoading() == -1) R.layout.layout_loading_dialog_default else getLayoutIdLoading())
+        loading = builder.create()
+    }
+
+    /**
+     * Show dialog loading
+     */
+    fun showDialog() {
+        if (!loading.isShowing) {
+            loading.show()
+        }
+    }
+
+    /**
+     * Hide dialog loading
+     */
+    fun hideDialog() {
+        if (loading.isShowing) {
+            loading.dismiss()
+        }
+    }
+
+    fun setCancelableDialog(isCancelable: Boolean) {
+        this.isCancelable = isCancelable
+    }
 }
