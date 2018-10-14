@@ -54,31 +54,23 @@ object UIHelper {
     }
 
     fun getScreenOrientation(context: Context): Int {
-        val wm = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
-        val display = wm.defaultDisplay
-        val orientation: Int
-        orientation = if (display.width == display.height) {
-            Configuration.ORIENTATION_SQUARE
+        return if (getScreenWidth(context) < getScreenHeight(context)) {
+            Configuration.ORIENTATION_PORTRAIT
         } else {
-            if (display.width < display.height) {
-                Configuration.ORIENTATION_PORTRAIT
-            } else {
-                Configuration.ORIENTATION_LANDSCAPE
-            }
+            Configuration.ORIENTATION_LANDSCAPE
         }
-        return orientation
-    }
-
-    fun dpToPx(context: Context, dp: Float): Int {
-        // Took from http://stackoverflow.com/questions/8309354/formula-px-to-dp-dp-to-px-android
-        val scale = context.resources.displayMetrics.density
-        return (dp * scale + 0.5f).toInt()
     }
 
     fun getScreenWidth(context: Context?): Int {
         return if (context == null) {
             0
         } else getDisplayMetrics(context).widthPixels
+    }
+
+    fun getScreenHeight(context: Context?): Int {
+        return if (context == null) {
+            0
+        } else getDisplayMetrics(context).heightPixels
     }
 
     /**
@@ -95,6 +87,10 @@ object UIHelper {
         return metrics
     }
 
+    /**
+     * TODO Get status bar height
+     * @param context
+     */
     fun getStatusBarHeight(context: Context): Int {
         var result = 0
         val resourceId = context.resources

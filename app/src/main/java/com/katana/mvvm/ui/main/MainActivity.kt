@@ -20,7 +20,7 @@ import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator {
 
-    private val LOGGER = Logger.getLogger(MainActivity::class.java)
+    private val LOGGER = Logger.getLogger(MainActivity::class.java)!!
 
     override fun getLayoutId() = R.layout.activity_main
 

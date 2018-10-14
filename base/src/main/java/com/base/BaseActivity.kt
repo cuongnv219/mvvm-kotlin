@@ -167,6 +167,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         }
     }
 
+    /**
+     * Set cancelable dialog
+     */
     fun setCancelableDialog(isCancelable: Boolean) {
         this.isCancelable = isCancelable
     }

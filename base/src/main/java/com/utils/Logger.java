@@ -33,6 +33,14 @@ public class Logger {
         }
     }
 
+    public void debug(String tag, Object msg) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.d(tag, msg.toString());
+            }
+        }
+    }
+
     public void debug(Object msg, Throwable tr) {
         if (isDebug) {
             if (msg != null) {
@@ -43,10 +51,28 @@ public class Logger {
         }
     }
 
+    public void debug(String tag, Object msg, Throwable tr) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.d(tag, msg.toString(), tr);
+            } else {
+                Log.d(tag, "Exception", tr);
+            }
+        }
+    }
+
     public void info(Object msg) {
         if (isDebug) {
             if (msg != null) {
                 Log.i(TAG, msg.toString());
+            }
+        }
+    }
+
+    public void info(String tag, Object msg) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.i(tag, msg.toString());
             }
         }
     }
@@ -61,6 +87,16 @@ public class Logger {
         }
     }
 
+    public void info(String tag, Object msg, Throwable tr) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.i(tag, msg.toString(), tr);
+            } else {
+                Log.i(tag, "Exception", tr);
+            }
+        }
+    }
+
     public void warn(Object msg) {
         if (isDebug) {
             if (msg != null) {
@@ -69,12 +105,20 @@ public class Logger {
         }
     }
 
-    public void warn(Object msg, Throwable tr) {
+    public void warn(String tag, Object msg) {
         if (isDebug) {
             if (msg != null) {
-                Log.w(TAG, msg.toString(), tr);
+                Log.w(tag, msg.toString());
+            }
+        }
+    }
+
+    public void warn(String tag, Object msg, Throwable tr) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.w(tag, msg.toString(), tr);
             } else {
-                Log.w(TAG, "Exception", tr);
+                Log.w(tag, "Exception", tr);
             }
         }
     }
@@ -87,12 +131,30 @@ public class Logger {
         }
     }
 
+    public void error(String tag, Object msg) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.e(tag, msg.toString());
+            }
+        }
+    }
+
     public void error(Object msg, Throwable tr) {
         if (isDebug) {
             if (msg != null) {
                 Log.e(TAG, msg.toString(), tr);
             } else {
                 Log.e(TAG, "Exception", tr);
+            }
+        }
+    }
+
+    public void error(String tag, Object msg, Throwable tr) {
+        if (isDebug) {
+            if (msg != null) {
+                Log.e(tag, msg.toString(), tr);
+            } else {
+                Log.e(tag, "Exception", tr);
             }
         }
     }

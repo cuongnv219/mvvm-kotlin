@@ -1,7 +1,9 @@
 package com.utils
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 
 /**
@@ -33,4 +35,14 @@ fun Activity.startActivityNewTask(clazz: Class<*>) {
     val intent = Intent(this, clazz)
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
     startActivity(intent)
+}
+
+fun Activity.isConnectedInternet(): Boolean {
+    val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    return if (connectivityManager != null) {
+        val networkInfo = connectivityManager.activeNetworkInfo
+        networkInfo != null && networkInfo.isAvailable && networkInfo.isConnected
+    } else {
+        false
+    }
 }

@@ -28,8 +28,8 @@ class RoundRectCornerImageView : android.support.v7.widget.AppCompatImageView {
     private fun init(context: Context, attrs: AttributeSet?) {
         path = Path()
         rect = RectF()
-        if (attrs != null) {
-            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.RoundRectCornerImageView)
+        attrs?.let {
+            val typedArray = context.obtainStyledAttributes(it, R.styleable.RoundRectCornerImageView)
             radius = typedArray.getFloat(R.styleable.RoundRectCornerImageView_radiusRound, 5.0f)
             typedArray.recycle()
         }
@@ -38,13 +38,18 @@ class RoundRectCornerImageView : android.support.v7.widget.AppCompatImageView {
     override fun onDraw(canvas: Canvas) {
         val w = this.width
         val h = this.height
-        rect!!.left = 0f
-        rect!!.top = 0f
-        rect!!.right = w.toFloat()
-        rect!!.bottom = h.toFloat()
 
-        path!!.addRoundRect(rect, radius, radius, Path.Direction.CW)
-        canvas.clipPath(path!!)
+        rect?.let {
+            it.left = 0f
+            it.top = 0f
+            it.right = w.toFloat()
+            it.bottom = h.toFloat()
+        }
+
+        path?.let {
+            it.addRoundRect(rect, radius, radius, Path.Direction.CW)
+            canvas.clipPath(it)
+        }
         super.onDraw(canvas)
     }
 }

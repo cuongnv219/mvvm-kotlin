@@ -1,6 +1,8 @@
 package com.utils
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 
@@ -33,4 +35,14 @@ fun Fragment.startActivityNewTask(clazz: Class<*>) {
     val intent = Intent(context, clazz)
     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
     activity?.startActivity(intent)
+}
+
+fun Fragment.isConnectedInternet(): Boolean {
+    val connectivityManager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+    return if (connectivityManager != null) {
+        val networkInfo = connectivityManager.activeNetworkInfo
+        networkInfo != null && networkInfo.isAvailable && networkInfo.isConnected
+    } else {
+        false
+    }
 }

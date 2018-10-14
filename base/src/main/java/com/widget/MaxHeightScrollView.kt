@@ -21,16 +21,15 @@ class MaxHeightScrollView : NestedScrollView {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        if (attrs != null) {
-            val styledAttrs = context.obtainStyledAttributes(attrs, R.styleable.MaxHeightScrollView)
+        attrs?.let {
+            val styledAttrs = context.obtainStyledAttributes(it, R.styleable.MaxHeightScrollView)
             maxHeight = styledAttrs.getDimensionPixelSize(R.styleable.MaxHeightScrollView_maxHeight, 200) //200 is a defualt value
             styledAttrs.recycle()
         }
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        var heightMeasureSpec = heightMeasureSpec
-        heightMeasureSpec = View.MeasureSpec.makeMeasureSpec(maxHeight, View.MeasureSpec.AT_MOST)
-        super.onMeasure(widthMeasureSpec, heightMeasureSpec)
+        val h: Int = View.MeasureSpec.makeMeasureSpec(maxHeight, View.MeasureSpec.AT_MOST)
+        super.onMeasure(widthMeasureSpec, h)
     }
 }
