@@ -152,7 +152,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
     /**
      * Show dialog loading
      */
-    fun showDialog() {
+    open fun showDialog() {
         if (!loading.isShowing) {
             loading.show()
         }
@@ -161,7 +161,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
     /**
      * Hide dialog loading
      */
-    fun hideDialog() {
+    open fun hideDialog() {
         if (loading.isShowing) {
             loading.dismiss()
         }
