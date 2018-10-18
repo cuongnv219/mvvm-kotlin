@@ -4,10 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion compile_version
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 28
+        minSdkVersion min_sdk_version
+        targetSdkVersion target_version
         versionCode 1
         versionName "1.0"
     }
