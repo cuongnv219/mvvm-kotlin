@@ -7,10 +7,10 @@ abstract class AppScrollListener : RecyclerView.OnScrollListener() {
     private var lastCompletelyVisibleItemPosition: Int = 0
     private var firstVisibleItemPosition: Int = 0
 
-    override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
-        val layoutManager = recyclerView!!.layoutManager
-        val size = layoutManager.itemCount
+        val layoutManager = recyclerView.layoutManager
+        val size = layoutManager!!.itemCount
         if (layoutManager is LinearLayoutManager) {
             findFirstAndLastVisible(layoutManager)
         }

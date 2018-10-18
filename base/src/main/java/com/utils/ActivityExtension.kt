@@ -41,7 +41,7 @@ fun Activity.isConnectedInternet(): Boolean {
     val connectivityManager = this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
     return if (connectivityManager != null) {
         val networkInfo = connectivityManager.activeNetworkInfo
-        networkInfo != null && networkInfo.isAvailable && networkInfo.isConnected
+        networkInfo != null && networkInfo.isConnected
     } else {
         false
     }

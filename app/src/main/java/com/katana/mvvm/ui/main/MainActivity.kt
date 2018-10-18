@@ -13,6 +13,7 @@ import com.katana.mvvm.model.Student
 import com.katana.mvvm.ui.main.adapter.StudentAdapter
 import com.utils.ListOfSomething
 import com.utils.Logger
+import com.utils.isConnectedInternet
 import com.widget.AppScrollListener
 import com.widget.Boast
 import kotlinx.android.synthetic.main.activity_main.*
@@ -62,6 +63,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
         val eventNextFragment = EventNextFragment(HomeFragment::class.java, false)
 
         openFragment(R.id.content_main, eventNextFragment.clazz, null, false)
+
+        toast(if (isConnectedInternet()) "connected" else "not connected")
     }
 
     private fun setUpRcv() {

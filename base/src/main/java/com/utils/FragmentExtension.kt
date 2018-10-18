@@ -6,6 +6,7 @@ import android.net.ConnectivityManager
 import android.os.Bundle
 import android.support.v4.app.Fragment
 
+
 /**
  * Created by Kaz on 08:38 7/20/18
  */
@@ -38,10 +39,17 @@ fun Fragment.startActivityNewTask(clazz: Class<*>) {
 }
 
 fun Fragment.isConnectedInternet(): Boolean {
+//    val connectivityManager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
+//    return if (connectivityManager != null) {
+//        val networkInfo = connectivityManager.activeNetworkInfo
+//        networkInfo != null && networkInfo.isAvailable && networkInfo.isConnected
+//    } else {
+//        false
+//    }
     val connectivityManager = activity?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager?
     return if (connectivityManager != null) {
         val networkInfo = connectivityManager.activeNetworkInfo
-        networkInfo != null && networkInfo.isAvailable && networkInfo.isConnected
+        networkInfo != null && networkInfo.isConnected
     } else {
         false
     }
