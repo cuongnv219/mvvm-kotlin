@@ -3,69 +3,70 @@ package com.utils
 import android.util.Log
 
 object LogUtil {
-    private var DEBUG = true
+
+    var isDebug = false
     var tag = "Fucking Log"
 
     fun init(isDebug: Boolean) {
-        DEBUG = isDebug
+        this.isDebug = isDebug
     }
 
     fun v(tag: String, msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.v(tag, msg)
         }
     }
 
     fun v(msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.v(tag, msg)
         }
     }
 
     fun debug(tag: String, msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.d(tag, msg)
         }
     }
 
     fun debug(msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.d(tag, msg)
         }
     }
 
     fun info(tag: String, msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.i(tag, msg)
         }
     }
 
     fun info(msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.i(tag, msg)
         }
     }
 
     fun warning(tag: String, msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.w(tag, msg)
         }
     }
 
     fun warning(msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.w(tag, msg)
         }
     }
 
     fun error(tag: String, msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.e(tag, msg)
         }
     }
 
     fun error(msg: String) {
-        if (DEBUG) {
+        if (isDebug) {
             Log.e(tag, msg)
         }
     }
