@@ -20,7 +20,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
 
     lateinit var binding: T
     lateinit var loading: AlertDialog
+    lateinit var loading2: AlertDialog
     private var isCancelable = false
+    private var isCancelable2 = false
 
     @LayoutRes
     protected abstract fun getLayoutId(): Int
@@ -42,6 +44,7 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         performDataBinding()
         updateUI(savedInstanceState)
         initDialog()
+        initDialog2()
     }
 
     private fun performDI() {
@@ -150,11 +153,41 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
     }
 
     /**
+     * Init dialog loading 2
+     */
+    private fun initDialog2() {
+        val builder: AlertDialog.Builder = if (getThemResId() != -1)
+            AlertDialog.Builder(this, getThemResId()) else AlertDialog.Builder(this)
+
+        builder.setCancelable(isCancelable2)
+        builder.setView(if (getLayoutIdLoading() == -1) R.layout.layout_loading_dialog_default else getLayoutIdLoading())
+        loading2 = builder.create()
+    }
+
+    /**
      * Show dialog loading
      */
     open fun showDialog() {
         if (!loading.isShowing) {
             loading.show()
+        }
+    }
+
+    /**
+     * Show dialog loading 2
+     */
+    open fun showDialog2() {
+        if (!loading2.isShowing) {
+            loading2.show()
+        }
+    }
+
+    /**
+     * Hide dialog loading 2
+     */
+    open fun hideDialog2() {
+        if (loading2.isShowing) {
+            loading2.dismiss()
         }
     }
 
@@ -172,5 +205,12 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
      */
     fun setCancelableDialog(isCancelable: Boolean) {
         this.isCancelable = isCancelable
+    }
+
+    /**
+     * Set cancelable dialog 2
+     */
+    fun setCancelableDialog2(isCancelable: Boolean) {
+        this.isCancelable2 = isCancelable
     }
 }
