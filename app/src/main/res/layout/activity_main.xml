@@ -4,6 +4,8 @@
 
   <data>
 
+    <import type="com.katana.mvvm.model.Student"/>
+
     <variable
         name="mainModel"
         type="com.katana.mvvm.ui.main.MainViewModel"/>
@@ -16,10 +18,16 @@
       android:orientation="vertical"
       tools:context=".ui.main.MainActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@{mainModel.student.name}"/>
+
     <Button
         android:id="@+id/btn_fuck"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:onClick="@{()->mainModel.doSomething()}"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv"

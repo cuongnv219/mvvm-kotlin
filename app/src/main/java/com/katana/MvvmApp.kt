@@ -5,6 +5,7 @@ import android.app.Application
 import com.androidnetworking.AndroidNetworking
 import com.katana.mvvm.BuildConfig
 import com.katana.mvvm.di.component.DaggerAppComponent
+import com.utils.LogUtil
 import com.utils.Logger
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -33,6 +34,7 @@ class MvvmApp : Application(), HasActivityInjector {
         super.onCreate()
 
         Logger.init(BuildConfig.DEBUG)
+        LogUtil.isDebug = true
         DaggerAppComponent.builder().application(this)
                 .build().inject(this)
 

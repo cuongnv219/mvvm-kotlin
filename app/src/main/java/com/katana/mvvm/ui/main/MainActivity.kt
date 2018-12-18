@@ -1,5 +1,7 @@
 package com.katana.mvvm.ui.main
 
+import android.arch.lifecycle.ViewModelProvider
+import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
@@ -15,20 +17,22 @@ import com.utils.ListOfSomething
 import com.utils.Logger
 import com.utils.isConnectedInternet
 import com.widget.AppScrollListener
-import com.widget.Boast
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
 
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNavigator {
 
-    private val LOGGER = Logger.getLogger(MainActivity::class.java)!!
+    private val LOGGER = Logger.getLogger(MainActivity::class.java)
 
     override fun getLayoutId() = R.layout.activity_main
 
     override fun getBindingVariable() = BR.mainModel
 
-    @Inject
+    //    @Inject
     lateinit var mainViewModel: MainViewModel
+
+    @Inject
+    lateinit var viewFactory: ViewModelProvider.Factory
     @Inject
     lateinit var studentAdapter: StudentAdapter
     @Inject
@@ -36,11 +40,15 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     var studentList: ArrayList<Student> = arrayListOf()
 
-    override fun getViewModel(): MainViewModel = mainViewModel
+    override fun getViewModel(): MainViewModel {
+        mainViewModel = ViewModelProviders.of(this, viewFactory).get(MainViewModel::class.java)
+        return mainViewModel
+    }
 
     override fun doSomething() {
 
     }
+
 
     override fun updateUI(savedInstanceState: Bundle?) {
         mainViewModel.setNavigator(this)
@@ -83,9 +91,9 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             override fun onLoadMore() {
             }
         })
-        binding.btnFuck.setOnClickListener {
-            Boast.makeText(this@MainActivity, "fuck").show()
-        }
+//        binding.btnFuck.setOnClickListener {
+//            Boast.makeText(this@MainActivity, "fuck").show()
+//        }
     }
 
     private fun initStudent() {
