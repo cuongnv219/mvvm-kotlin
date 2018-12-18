@@ -1,10 +1,14 @@
 package com.katana.mvvm.di.module
 
+import android.arch.persistence.room.Room
 import android.content.Context
 import com.google.gson.GsonBuilder
 import com.katana.MvvmApp
 import com.katana.mvvm.data.AppDataManager
 import com.katana.mvvm.data.DataManager
+import com.katana.mvvm.data.local.AppDatabase
+import com.katana.mvvm.data.local.AppDbHelper
+import com.katana.mvvm.data.local.DbHelper
 import com.katana.mvvm.data.remote.ApiHelper
 import com.katana.mvvm.data.remote.AppApiHelper
 import com.utils.SchedulerProvider
@@ -47,4 +51,13 @@ class AppModule {
                     .setDefaultFontPath("fonts/source-sans-pro/SourceSansPro-Regular.ttf")
                     .setFontAttrId(R.attr.fontPath)
                     .build()
+
+    @Provides
+    @Singleton
+    fun provideAppDatabase(context: Context): AppDatabase =
+            Room.databaseBuilder(context, AppDatabase::class.java, "hihi").build()
+
+    @Provides
+    @Singleton
+    fun provideDbHelper(appDbHelper: AppDbHelper): DbHelper = appDbHelper
 }

@@ -1,5 +1,6 @@
 package com.katana.mvvm.ui.main
 
+import android.arch.lifecycle.LiveData
 import android.databinding.ObservableField
 import com.katana.mvvm.base.BaseViewModel
 import com.katana.mvvm.data.DataManager
@@ -14,8 +15,10 @@ class MainViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvid
 
     fun doSomething() {
 //        getNavigator().doSomething()
-        student.set(Student("Fuck", "d"))
+//        student.set(Student("Fuck", "d"))
     }
+
+    var students: LiveData<List<Student>> = dataManager.getAllStudent()
 
     var text: ObservableField<String> = ObservableField()
 
@@ -29,5 +32,22 @@ class MainViewModel(dataManager: DataManager, schedulerProvider: SchedulerProvid
                 }, { _ ->
 
                 }))
+    }
+
+    fun insertStudent(student: Student) {
+        compositeDisposable.add(dataManager.insertStudent(student)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe({
+
+                }, {
+
+                }))
+    }
+
+    fun deleteStudent(student: Student) {
+        compositeDisposable.add(dataManager.deleteStudent(student)
+                .compose(schedulerProvider.ioToMainObservableScheduler())
+                .subscribe())
+//        dataManager.deleteStudent(student)
     }
 }

@@ -1,5 +1,6 @@
 package com.katana.mvvm.ui.main
 
+import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProvider
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
@@ -15,7 +16,6 @@ import com.katana.mvvm.model.Student
 import com.katana.mvvm.ui.main.adapter.StudentAdapter
 import com.utils.ListOfSomething
 import com.utils.Logger
-import com.utils.isConnectedInternet
 import com.widget.AppScrollListener
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -49,7 +49,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 
     }
 
-
     override fun updateUI(savedInstanceState: Bundle?) {
         mainViewModel.setNavigator(this)
 
@@ -65,14 +64,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
 //        params.map { "part" to "snippet" }
 //        params.map { "hl" to "en_us" }
         setUpRcv()
-        initStudent()
-        mainViewModel.getAllCountry()
 
         val eventNextFragment = EventNextFragment(HomeFragment::class.java, false)
 
         openFragment(R.id.content_main, eventNextFragment.clazz, null, false)
 
-        toast(if (isConnectedInternet()) "connected" else "not connected")
+//        toast(if (isConnectedInternet()) "connected" else "not connected")
+
+        mainViewModel.students.observe(this, Observer {
+            LOGGER.error(gson.toJson(it))
+            studentAdapter.setStudentList(it!!)
+        })
     }
 
     private fun setUpRcv() {
@@ -84,6 +86,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             override fun onItemClickListener(view: View, pos: Int) {
                 LOGGER.error("$pos")
                 toast(pos.toString())
+                mainViewModel.deleteStudent(studentAdapter.getStudent(pos))
             }
         })
         rcv.addOnScrollListener(object : AppScrollListener() {
@@ -91,18 +94,10 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>(), MainNav
             override fun onLoadMore() {
             }
         })
-//        binding.btnFuck.setOnClickListener {
-//            Boast.makeText(this@MainActivity, "fuck").show()
-//        }
-    }
-
-    private fun initStudent() {
-        for (i in 0..10) {
-            val student = Student("Nguyen Van $i", "$i")
-            studentList.add(student)
+        binding.btnFuck.setOnClickListener {
+            //            Boast.makeText(this@MainActivity, "fuck").show()
+            mainViewModel.insertStudent(Student("${System.currentTimeMillis() / 1000}", null))
         }
-
-        studentAdapter.setStudentList(studentList)
     }
 
     override fun getLayoutIdLoading(): Int {

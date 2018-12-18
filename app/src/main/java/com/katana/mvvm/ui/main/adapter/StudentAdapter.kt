@@ -14,17 +14,19 @@ import kotlinx.android.synthetic.main.item_student.view.*
  */
 class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentHolder>() {
 
-    private var listStudent: ArrayList<Student>?
+    private var listStudent: List<Student>?
     private lateinit var onItemClick: OnItemClick
 
     init {
         this.listStudent = arrayListOf()
     }
 
-    fun setStudentList(listStudent: ArrayList<Student>) {
+    fun setStudentList(listStudent: List<Student>) {
         this.listStudent = listStudent
         notifyDataSetChanged()
     }
+
+    fun getStudent(position: Int) = listStudent!![position]
 
     fun setOnItemClick(onItemClick: OnItemClick) {
         this.onItemClick = onItemClick
@@ -47,8 +49,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentHolder>() {
         }
     }
 
-    inner class StudentHolder(private var itemStudentBinding: ItemStudentBinding) : RecyclerView.ViewHolder
-    (itemStudentBinding.root) {
+    class StudentHolder(private var itemStudentBinding: ItemStudentBinding) : RecyclerView.ViewHolder(itemStudentBinding.root) {
 
         fun onBind(student: Student) {
             itemStudentBinding.setVariable(BR.studentModel, student)
