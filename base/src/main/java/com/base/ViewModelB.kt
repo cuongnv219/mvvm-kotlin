@@ -3,6 +3,7 @@ package com.base
 import android.arch.lifecycle.ViewModel
 import com.utils.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import java.lang.ref.WeakReference
 
 /**
@@ -22,5 +23,9 @@ abstract class ViewModelB<N>(private var schedulerProvider: SchedulerProvider) :
     override fun onCleared() {
         compositeDisposable.dispose()
         super.onCleared()
+    }
+
+    fun launch(job: () -> Disposable) {
+        compositeDisposable.add(job())
     }
 }
