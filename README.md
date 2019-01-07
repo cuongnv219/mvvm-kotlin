@@ -1,4 +1,7 @@
 # Mvvm-architecture-dagger
+
+[![Build Status](https://travis-ci.org/cuongnv219/mvvm-kotlin.svg?branch=master)](https://travis-ci.org/cuongnv219/mvvm-kotlin)
+
 Sample base mvvm
 This repository contains a detailed sample app that implements MVVM architecture using Dagger2, Room, RxJava, FastAndroidNetworking...
 
