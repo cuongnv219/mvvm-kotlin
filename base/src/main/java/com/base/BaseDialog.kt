@@ -63,14 +63,6 @@ abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : androidx.fragmen
         updateUI(savedInstanceState)
     }
 
-    override fun show(fragManager: FragmentManager, tag: String?) {
-        val transaction = fragManager.beginTransaction()
-        val prev: Fragment? = fragManager.findFragmentByTag(tag)
-        prev?.let { transaction.remove(it) }
-        transaction.addToBackStack(null)
-        super.show(transaction, tag)
-    }
-
     @Throws()
     open fun dismissDialog(fragManager: FragmentManager, tag: String) {
         val frag: Fragment? = fragManager.findFragmentByTag(tag)
@@ -103,4 +95,13 @@ abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : androidx.fragmen
             Boast.makeText(it, msg).show()
         }
     }
+
+    override fun show(fragManager: FragmentManager, tag: String?) {
+        val transaction = fragManager.beginTransaction()
+        val prev: Fragment? = fragManager.findFragmentByTag(tag)
+        prev?.let { transaction.remove(it) }
+        transaction.addToBackStack(null)
+        super.show(transaction, tag)
+    }
+
 }
