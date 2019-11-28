@@ -1,6 +1,6 @@
 package com.katana.mvvm.ui.main.adapter
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.item_student.view.*
 /**
  * Created by Kaz on 08:26 8/28/18
  */
-class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentHolder>() {
+class StudentAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<StudentAdapter.StudentHolder>() {
 
     private var listStudent: List<Student>?
     private lateinit var onItemClick: OnItemClick
@@ -49,7 +49,7 @@ class StudentAdapter : RecyclerView.Adapter<StudentAdapter.StudentHolder>() {
         }
     }
 
-    class StudentHolder(private var itemStudentBinding: ItemStudentBinding) : RecyclerView.ViewHolder(itemStudentBinding.root) {
+    class StudentHolder(private var itemStudentBinding: ItemStudentBinding) : androidx.recyclerview.widget.RecyclerView.ViewHolder(itemStudentBinding.root) {
 
         fun onBind(student: Student) {
             itemStudentBinding.setVariable(BR.studentModel, student)

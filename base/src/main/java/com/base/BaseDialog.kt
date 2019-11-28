@@ -1,28 +1,27 @@
 package com.base
 
 import android.app.Dialog
-import android.arch.lifecycle.ViewModel
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.DialogFragment
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import android.widget.RelativeLayout
+import androidx.annotation.LayoutRes
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.ViewModel
 import com.widget.Boast
 import dagger.android.support.AndroidSupportInjection
 
 /**
  * Created by Kaz on 11:32 7/20/18
  */
-abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : DialogFragment() {
+abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : androidx.fragment.app.DialogFragment() {
 
     lateinit var binding: T
 
@@ -64,7 +63,7 @@ abstract class BaseDialog<T : ViewDataBinding, V : ViewModel> : DialogFragment()
         updateUI(savedInstanceState)
     }
 
-    override fun show(fragManager: FragmentManager, tag: String) {
+    override fun show(fragManager: FragmentManager, tag: String?) {
         val transaction = fragManager.beginTransaction()
         val prev: Fragment? = fragManager.findFragmentByTag(tag)
         prev?.let { transaction.remove(it) }

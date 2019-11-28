@@ -1,13 +1,13 @@
 package com.base
 
 import android.content.Context
-import android.databinding.DataBindingUtil
-import android.databinding.ViewDataBinding
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.v4.app.Fragment
-import android.support.v7.app.AlertDialog
-import android.support.v7.app.AppCompatActivity
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import com.widget.Boast
 import dagger.android.AndroidInjection
 import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper
@@ -76,9 +76,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         try {
             val isExisted = supportFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
             if (!isExisted) {
-                val fragment: Fragment
+                val fragment: androidx.fragment.app.Fragment
                 try {
-                    fragment = (fragmentClazz as Class<Fragment>).newInstance().apply { arguments = args }
+                    fragment = (fragmentClazz as Class<androidx.fragment.app.Fragment>).newInstance().apply { arguments = args }
 
                     val transaction = supportFragmentManager.beginTransaction()
                     //transaction.setCustomAnimations(R.anim.enter, R.anim.exit, R.anim.pop_enter, R.anim.pop_exit);
@@ -108,9 +108,9 @@ abstract class BaseActivity<T : ViewDataBinding, V : ViewModelB<*>> : AppCompatA
         try {
             val isExisted = supportFragmentManager.popBackStackImmediate(tag, 0)    // IllegalStateException
             if (!isExisted) {
-                val fragment: Fragment
+                val fragment: androidx.fragment.app.Fragment
                 try {
-                    fragment = (fragmentClazz as Class<Fragment>).newInstance().apply { arguments = args }
+                    fragment = (fragmentClazz as Class<androidx.fragment.app.Fragment>).newInstance().apply { arguments = args }
 
                     val transaction = supportFragmentManager.beginTransaction()
                     transaction.setCustomAnimations(aniInt[0], aniInt[1], aniInt[2], aniInt[3])

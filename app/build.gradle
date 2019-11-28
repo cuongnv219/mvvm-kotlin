@@ -25,38 +25,41 @@ android {
     lintOptions {
         abortOnError false
     }
-//    kapt {
-//        useBuildCache true
-//    }
+    android {
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+    }
 }
 
 dependencies {
     implementation project(':base')
     implementation fileTree(dir: 'libs', include: ['*.jar', '*.aar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$android_version"
-    implementation "com.android.support:support-v4:$android_version"
-    implementation "com.android.support:design:$android_version"
-    implementation "com.android.support:recyclerview-v7:$android_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
-    implementation "android.arch.lifecycle:extensions:1.1.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.1.0'
 
-    implementation "io.reactivex.rxjava2:rxjava:2.1.15"
-    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    implementation "io.reactivex.rxjava2:rxandroid:2.1.1"
     // dependency injection
-    implementation "com.google.dagger:dagger:2.16"
-    kapt "com.google.dagger:dagger-compiler:2.16"
-    kapt "com.google.dagger:dagger-android-processor:2.16"
-    implementation "com.google.dagger:dagger-android-support:2.15"
+    implementation "com.google.dagger:dagger:2.21"
+    kapt "com.google.dagger:dagger-compiler:2.21"
+    kapt "com.google.dagger:dagger-android-processor:2.21"
+    implementation "com.google.dagger:dagger-android-support:2.21"
     //event bus
     implementation 'org.greenrobot:eventbus:3.1.1'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'android.arch.persistence.room:rxjava2:1.1.1'
-    kapt "android.arch.persistence.room:compiler:1.1.1"
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'androidx.room:room-rxjava2:2.2.2'
+    kapt 'androidx.room:room-compiler:2.2.2'
 
     implementation 'uk.co.chrisjenx:calligraphy:2.3.0'
 
-    implementation 'com.intuit.ssp:ssp-android:1.0.5'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'com.intuit.sdp:sdp-android:1.0.5'
     implementation 'com.amitshekhar.android:rx2-android-networking:1.0.2'
 }

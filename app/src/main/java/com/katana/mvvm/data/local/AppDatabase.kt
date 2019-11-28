@@ -1,7 +1,7 @@
 package com.katana.mvvm.data.local
 
-import android.arch.persistence.room.Database
-import android.arch.persistence.room.RoomDatabase
+import androidx.room.Database
+import androidx.room.RoomDatabase
 import com.katana.mvvm.model.Student
 
 /**

@@ -1,17 +1,17 @@
 package com.widget
 
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
-abstract class AppScrollListener : RecyclerView.OnScrollListener() {
+abstract class AppScrollListener : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
     private var lastCompletelyVisibleItemPosition: Int = 0
     private var firstVisibleItemPosition: Int = 0
 
-    override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+    override fun onScrolled(recyclerView: androidx.recyclerview.widget.RecyclerView, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
         val layoutManager = recyclerView.layoutManager
         val size = layoutManager!!.itemCount
-        if (layoutManager is LinearLayoutManager) {
+        if (layoutManager is androidx.recyclerview.widget.LinearLayoutManager) {
             findFirstAndLastVisible(layoutManager)
         }
 
@@ -20,7 +20,7 @@ abstract class AppScrollListener : RecyclerView.OnScrollListener() {
         }
     }
 
-    private fun findFirstAndLastVisible(layoutManager: LinearLayoutManager) {
+    private fun findFirstAndLastVisible(layoutManager: androidx.recyclerview.widget.LinearLayoutManager) {
         firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
         lastCompletelyVisibleItemPosition = layoutManager.findLastCompletelyVisibleItemPosition()
     }

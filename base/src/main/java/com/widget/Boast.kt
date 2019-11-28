@@ -19,7 +19,7 @@ package com.widget
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.res.Resources
-import android.support.annotation.LayoutRes
+import androidx.annotation.LayoutRes
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.Toast

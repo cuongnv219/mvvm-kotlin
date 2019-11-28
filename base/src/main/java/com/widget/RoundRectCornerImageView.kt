@@ -7,7 +7,7 @@ import android.graphics.RectF
 import android.util.AttributeSet
 import com.base.R
 
-class RoundRectCornerImageView : android.support.v7.widget.AppCompatImageView {
+class RoundRectCornerImageView : androidx.appcompat.widget.AppCompatImageView {
 
     private var radius = 5.0f
     private var path: Path? = null

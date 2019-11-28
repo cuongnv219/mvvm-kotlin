@@ -6,7 +6,7 @@ import android.util.AttributeSet
 /**
  * Created by Ka on 04/07/2016.
  */
-class SquareImageView : android.support.v7.widget.AppCompatImageView {
+class SquareImageView : androidx.appcompat.widget.AppCompatImageView {
 
     constructor(context: Context) : super(context)
 

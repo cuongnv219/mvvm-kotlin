@@ -1,7 +1,7 @@
 package com.katana.mvvm.ui.main
 
-import android.arch.lifecycle.ViewModelProvider
-import android.support.v7.widget.LinearLayoutManager
+import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ViewModelProviderFactory
 import com.katana.mvvm.data.DataManager
 import com.katana.mvvm.ui.main.adapter.StudentAdapter
@@ -23,7 +23,7 @@ class MainModule {
     fun provideViewModelFactory(mainViewModel: MainViewModel): ViewModelProvider.Factory = ViewModelProviderFactory(mainViewModel)
 
     @Provides
-    fun provideLayoutManager(activity: MainActivity): LinearLayoutManager = LinearLayoutManager(activity)
+    fun provideLayoutManager(activity: MainActivity): androidx.recyclerview.widget.LinearLayoutManager = androidx.recyclerview.widget.LinearLayoutManager(activity)
 
     @Provides
     fun provideStudentAdapter() = StudentAdapter()

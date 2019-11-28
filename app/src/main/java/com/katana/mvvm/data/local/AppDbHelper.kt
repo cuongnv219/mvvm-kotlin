@@ -1,6 +1,6 @@
 package com.katana.mvvm.data.local
 
-import android.arch.lifecycle.LiveData
+import androidx.lifecycle.LiveData
 import com.katana.mvvm.model.Student
 import io.reactivex.Observable
 import javax.inject.Inject

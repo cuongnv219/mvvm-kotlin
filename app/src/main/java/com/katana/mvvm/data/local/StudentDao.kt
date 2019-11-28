@@ -1,7 +1,7 @@
 package com.katana.mvvm.data.local
 
-import android.arch.lifecycle.LiveData
-import android.arch.persistence.room.*
+import androidx.lifecycle.LiveData
+import androidx.room.*
 import com.katana.mvvm.model.Student
 
 /**

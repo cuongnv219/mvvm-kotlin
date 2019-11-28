@@ -1,7 +1,7 @@
 package com.katana.mvvm.ui.main
 
-import android.arch.lifecycle.LiveData
-import android.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.databinding.ObservableField
 import com.katana.mvvm.base.BaseViewModel
 import com.katana.mvvm.data.DataManager
 import com.katana.mvvm.model.Student
