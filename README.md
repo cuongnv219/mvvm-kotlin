@@ -1,5 +1,6 @@
 # Mvvm-architecture-dagger
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/809a0689a92c4b14b6de1ed4b91389df)](https://app.codacy.com/app/cuongnv219/mvvm-kotlin?utm_source=github.com&utm_medium=referral&utm_content=cuongnv219/mvvm-kotlin&utm_campaign=Badge_Grade_Settings)
 [![Build Status](https://travis-ci.org/cuongnv219/mvvm-kotlin.svg?branch=master)](https://travis-ci.org/cuongnv219/mvvm-kotlin)
 
 Sample base mvvm
